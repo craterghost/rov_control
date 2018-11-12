@@ -24,11 +24,11 @@ ROVControl::ROVControl() {
 
 void ROVControl::rovCallback(const geometry_msgs::Twist::ConstPtr &msg) {
   //Moderate the axes so they fit the PWM
-  double linX = (twistMsg.linear.x)*500+1000;
-  double linY = (twistMsg.linear.y)*500+1000;
-  double linZ = (twistMsg.linear.z)*500+1000;
-  double angZ = (twistMsg.angular.z)*500+1000;
-  double angY = (twistMsg.angular.y)*500+1000;
+  double linX = (twistMsg.linear.x)*600+1000;
+  double linY = (twistMsg.linear.y)*600+1000;
+  double linZ = (twistMsg.linear.z)*600+1000;
+  double angZ = (twistMsg.angular.z)*600+1000;
+  double angY = (twistMsg.angular.y)*600+1000;
 
   //Add up and constrain multiple axes to get a PWM - value for each motor
   double motor08 = constrain(-linZ, 1100, 1600);
