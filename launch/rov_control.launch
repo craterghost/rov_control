@@ -1,0 +1,7 @@
+<launch>
+    <!-- ROV Controller launch file -->
+    <node pkg="joy_twist" type="joy_twist_node" name="cmd_vel"  output="screen" />
+    <node pkg="joy" type="joy_node" name="joy"  output="screen" />
+    <node pkg="rov_control" type="rov_control_node" name="joy_rov"  output="screen" />
+
+</launch>
