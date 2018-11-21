@@ -28,22 +28,21 @@ ROVControl::ROVControl() {
 
 void ROVControl::rovCallback(const geometry_msgs::Twist::ConstPtr &msg) {
   //Moderate the axes so they fit the PWM
-  double linX = msg->linear.x;
-  double linY = msg->linear.y;
-  double linZ = msg->linear.z;
-  double angZ = msg->angular.z;
-  double angY = msg->angular.y;
+  double linX = msg->linear.x;      //Linker Stick Vertikal
+  double linY = msg->linear.y;      //Rechter Stick Horizontal
+  double linZ = msg->linear.z;      //Rechter Stick Vertikal
+  double angZ = msg->angular.z;     //Rechter Stick Horizontal
+  double angY = msg->angular.y;     //Rechter AUX
 
   //Add up and constrain multiple axes to get a PWM - value for each motor
-
-  double motor08 = constrain(linZ*-600+1500, 1200, 1800);
-  double motor09 = constrain(linZ*-600+1500, 1200, 1800);
-  double motor13 = constrain(linZ*-600+1500, 1200, 1800);
-  double motor14 = constrain(linZ*-600+1500, 1200, 1800);
-  double motor10 = constrain(linX*-600+angZ*600+linY*600+1500, 1200, 1800);
-  double motor15 = constrain(linX*-600+angZ*-600+linY*-600+1500, 1200, 1800);
-  double motor11 = constrain(linX*600+angZ*-600+linY*600+1500, 1200, 1800);
-  double motor12 = constrain(linX*600+angZ*600+linY*-600+1500, 1200, 1800);
+  double motor08 = constrain(linZ*100+1500, 1400, 1600);
+  double motor09 = constrain(linZ*100+1500, 1400, 1600);
+  double motor13 = constrain(linZ*-100+1500, 1400, 1600);
+  double motor14 = constrain(linZ*100+1500, 1400, 1600);
+  double motor10 = constrain(linX*100+angZ*-100+linY*-100+1500, 1400, 1600);
+  double motor15 = constrain(linX*-100+angZ*-100+linY*-100+1500, 1400, 1600);
+  double motor11 = constrain(linX*-100+angZ*100+linY*-100+1500, 1400, 1600);
+  double motor12 = constrain(linX*100+angZ*100+linY*-100+1500, 1400, 1600);
 
   motor.motor08 = int(motor08);
   motor.motor09 = int(motor09);
